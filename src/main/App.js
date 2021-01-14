@@ -5,6 +5,7 @@ import Header  from "/Users/sylviachadha/WebstormProjects/muhivproject/src/compo
 import Grid from "@material-ui/core/Grid";
 import home from "/Users/sylviachadha/WebstormProjects/muhivproject/src/pages/home";
 import dashboard from "../pages/dashboard";
+import report from "../pages/report";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                             <Route exact path="/" component={home}/>
                             <Route exact path="/home" component={home}/>
                             <Route exact path="/dashboard" component={dashboard}/>
+                            <Route exact path="/report" component={report}/>
                         </Switch>
                     </Grid>
                 </Grid>
