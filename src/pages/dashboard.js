@@ -48,7 +48,7 @@ export default function Dashboard() {
     const Gauge1data = [
         {
             domain: {x: [0, 1], y: [0, 1]},
-            value: 17.9, number: {suffix: "%"},
+            value: 90.1, number: {suffix: "%"},
             title: {text: "Tested by RTRI"},
             type: "indicator",
             mode: "gauge+number",

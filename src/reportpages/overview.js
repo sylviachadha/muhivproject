@@ -280,9 +280,9 @@ export default function Report() {
                         </Grid>
                     </Grid>
                     <Grid item className={classes.itemHeading}>
-                    <Typography variant={'h6'}>
-                        Recent Infection Testing Algorithm [RITA] Result
-                    </Typography>
+                        <Typography variant={'h6'}>
+                            Recent Infection Testing Algorithm [RITA] Result
+                        </Typography>
 
                     </Grid>
                     <Grid item className={classes.item}>
