@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-import Header  from "/Users/sylviachadha/WebstormProjects/muhivproject/src/components/header";
+import Header  from "../components/header";
 import Grid from "@material-ui/core/Grid";
-import home from "/Users/sylviachadha/WebstormProjects/muhivproject/src/pages/home";
+import home from "../pages/home";
 import dashboard from "../pages/dashboard";
 import report from "../pages/report";
 import Overview from "../reportpages/overview"
