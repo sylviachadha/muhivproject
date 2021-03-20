@@ -2,9 +2,9 @@ import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import VerticalMenu from "../components/sidemenu";
-import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Plot from "react-plotly.js";
+import Card from "@material-ui/core/Card";
 
 const useStyles = makeStyles(theme => ({
     mainContainer: {
@@ -29,14 +29,14 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function PartnerHiv() {
+export default function Site() {
 
     const classes = useStyles();
 
-    const x2Value = ['Not contacted', 'HIV +ve', 'HIV -ve'];
+    const x2Value = ['VCT Site1', 'VCT Site2', 'VCT Site3', 'VCT Site4'];
 
-    const y2Value = [20, 25, 40];
-    const y2Value2 = [24, 16, 30];
+    const y2Value = [50, 14, 23, 20];
+    const y2Value2 = [30, 16, 20, 24];
 
     const trace02 = {
         x: x2Value,
@@ -76,63 +76,51 @@ export default function PartnerHiv() {
     const Bar3Data = [trace02, trace12];
 
     const Bar3Layout = {
-        width: 450,
+        width: 500,
         height: 400,
-        title: "Partner HIV Result",
-        xaxis: {title: 'HIV Status'},
+        title: "RTRI by Site",
+        xaxis: {title: 'Hospitals'},
         yaxis: {title: 'No of HIV Cases'}
     };
 
-    const x5Value = ['Contacted', 'Tested', 'HIV +ve', 'Recency +ve', 'On ART'];
-
-    const y5Value = [120, 100, 80, 20, 20];
-    const y5Value2 = [271, 200, 178, 90, 88];
-
-    const trace8 = {
-        x: x5Value,
-        y: y5Value,
-        type: 'bar',
-        text: y5Value.map(String),
-        textposition: 'auto',
-        hoverinfo: 'none',
-        name: "LT",
-        opacity: 0.5,
-        marker: {
-            color: 'rgb(226,184,177)',
-            line: {
-                color: 'rgb(8,48,107)',
-                width: 1.5
-            }
-        }
+    // Line chart / trend chart
+    const line1Data = {
+        x: ["Jan", "Feb", "Mar", "Apr","May"],
+        y: [10, 15, 13, 17,22],
+        type: 'scatter',
+        name: 'VCT Site1'
     };
 
-    const trace9 = {
-        x: x5Value,
-        y: y5Value2,
-        type: 'bar',
-        text: y5Value2.map(String),
-        textposition: 'auto',
-        hoverinfo: 'none',
-        name: "Recent",
-        marker: {
-            color: 'rgb(212,72,67)',
-            line: {
-                color: 'rgb(8,48,107)',
-                width: 1.5
-            }
-        }
+    const line2Data = {
+        x: ["Jan", "Feb", "Mar", "Apr","May"],
+        y: [16, 10, 11, 10, 18],
+        type: 'scatter',
+        name: 'VCT Site2'
     };
 
-    const Bar5Data = [trace8, trace9];
+    const line3Data = {
+        x: ["Jan", "Feb", "Mar", "Apr","May"],
+        y: [18, 14, 16, 18,15],
+        type: 'scatter',
+        name: 'VCT Site3'
+    };
 
-    const Bar5Layout = {
+    const line4Data = {
+        x: ["Jan", "Feb", "Mar", "Apr","May"],
+        y: [20, 12, 12, 12,13],
+        type: 'scatter',
+        name: 'VCT Site4'
+    };
+
+    const lineData1 = [line1Data, line2Data,line3Data,line4Data];
+
+    const lineLayout1 = {
         width: 500,
         height: 400,
-        title: "Partner Recency",
-        xaxis: {title: 'HIV Recency'},
-        yaxis: {title: "Index Client's Partner"}
+        title: "Site",
+        xaxis: {title: 'Site'},
+        yaxis: {title: 'No of HIV Cases'}
     };
-
 
     return (
         <Grid container className={classes.mainContainer} direction={"row"}>
@@ -140,8 +128,8 @@ export default function PartnerHiv() {
                 <VerticalMenu></VerticalMenu>
             </Grid>
             <Grid item className={classes.itemHeading}>
-                {/*<Grid container direction={"column"}>*/}
-                {/*    <Grid item>*/}
+                <Grid container direction={"column"}>
+                    <Grid item>
                         <Grid container direction={"row"}>
                             <Grid item>
                                 <Card className={classes.root} variant="outlined">
@@ -162,8 +150,8 @@ export default function PartnerHiv() {
                                     <CardContent>
 
                                         <Plot
-                                            data={Bar5Data}
-                                            layout={Bar5Layout}
+                                            data={lineData1}
+                                            layout={lineLayout1}
 
                                             // To disable trace
                                             config={{displayModeBar: false, staticPlot: false}}
@@ -171,11 +159,10 @@ export default function PartnerHiv() {
                                     </CardContent>
                                 </Card>
                             </Grid>
-                    {/*    </Grid>*/}
-                    {/*</Grid>*/}
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
-
     );
 }

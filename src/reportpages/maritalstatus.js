@@ -35,8 +35,8 @@ export default function MaritalStatus() {
 
     const x2Value = ['Single', 'Married', 'Divorced'];
 
-    const y2Value = [20, 25, 40];
-    const y2Value2 = [24, 16, 30];
+    const y2Value = [20, 40, 25];
+    const y2Value2 = [24, 30, 16];
 
     const trace02 = {
         x: x2Value,

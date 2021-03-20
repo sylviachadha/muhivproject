@@ -43,8 +43,8 @@ export default function Risk() {
     }]
 
     const Pie1Layout = {
-        height: 450,
-        width: 550,
+        height: 400,
+        width: 500,
         margin: {"t": 0, "b": 0, "l": 0, "r": 0},
         showlegend: true,
         title: "Transmission Risk"
@@ -52,7 +52,7 @@ export default function Risk() {
 
     const values = [
         ['Heterosexual', 'MSM/TG', 'Injection Drug Use', 'Blood Transfusion', 'Perinatal', 'Unknown', '<b>TOTAL</b>'],
-        [1200000, 100000, 80000, 5000, 2000, 1000, 1388000]]
+        [500000, 5000, 80000, 100000, 2000, 689000]]
 
     const TableData = [{
         type: 'table',
@@ -70,7 +70,16 @@ export default function Risk() {
             fill: {color: ['#08f6e3', 'white']},
             font: {family: "Arial", size: 15, color: ["#506784"]}
         }
+
     }]
+
+    const tableLayout = {
+        height: 400,
+        width: 430,
+        margin: {"t": 100, "b": 0, "l": 0, "r": 0},
+        showlegend: true,
+        title: "Risk Table"
+    }
 
     return (
         <Grid container className={classes.mainContainer} direction={"row"}>
@@ -78,10 +87,10 @@ export default function Risk() {
                 <VerticalMenu></VerticalMenu>
             </Grid>
             <Grid item className={classes.itemHeading}>
-                <Grid container direction={"column"}>
+                <Grid container direction={"row"}>
                     <Grid item>
-                        <Grid container direction={"row"}>
-                            <Grid item>
+                        {/*<Grid container direction={"row"}>*/}
+                        {/*    <Grid item>*/}
                                 <Card className={classes.root} variant="outlined">
                                     <CardContent>
 
@@ -91,9 +100,20 @@ export default function Risk() {
                                         />
                                     </CardContent>
                                 </Card>
-                            </Grid>
+                        {/*    </Grid>*/}
 
-                        </Grid>
+                        {/*</Grid>*/}
+                    </Grid>
+                    <Grid item>
+                        <Card className={classes.root} variant="outlined">
+                            <CardContent>
+
+                                <Plot
+                                    data={TableData}
+                                    layout={tableLayout}
+                                />
+                            </CardContent>
+                        </Card>
                     </Grid>
                 </Grid>
             </Grid>

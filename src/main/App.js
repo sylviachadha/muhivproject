@@ -11,7 +11,8 @@ import Gender from "../reportpages/gender";
 import MaritalStatus from "../reportpages/maritalstatus"
 import Risk from "../reportpages/risk"
 import PartnerHiv from "../reportpages/partnerhiv"
-
+import Age from "../reportpages/age"
+import Site from "../reportpages/site"
 
 function App() {
     const [value, setValue] = useState(0);
@@ -31,9 +32,11 @@ function App() {
                             <Route path="/overview" component={Overview} exact/>
                             <Route path="/by-gender" component={Gender} exact/>
                             <Route path="/by-status" component={MaritalStatus} exact/>
-                            <Route path="/by-status" component={MaritalStatus} exact/>
+                            <Route path="/by-age" component={Age} exact/>
                             <Route path="/by-risk" component={Risk} exact/>
                             <Route path="/by-outcome" component={PartnerHiv} exact/>
+                            <Route path="/by-site" component={Site} exact/>
+
                         </Switch>
                     </Grid>
                 </Grid>
