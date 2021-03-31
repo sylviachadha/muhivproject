@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/sylviachadha/muhivproject/static/css/main.b94b1dd0.chunk.css",
-    "main.js": "/sylviachadha/muhivproject/static/js/main.ecffd469.chunk.js",
-    "main.js.map": "/sylviachadha/muhivproject/static/js/main.ecffd469.chunk.js.map",
-    "runtime-main.js": "/sylviachadha/muhivproject/static/js/runtime-main.2d9e7451.js",
-    "runtime-main.js.map": "/sylviachadha/muhivproject/static/js/runtime-main.2d9e7451.js.map",
-    "static/css/2.ac73090f.chunk.css": "/sylviachadha/muhivproject/static/css/2.ac73090f.chunk.css",
-    "static/js/2.8c3f31a1.chunk.js": "/sylviachadha/muhivproject/static/js/2.8c3f31a1.chunk.js",
-    "static/js/2.8c3f31a1.chunk.js.map": "/sylviachadha/muhivproject/static/js/2.8c3f31a1.chunk.js.map",
-    "static/js/3.9b47535b.chunk.js": "/sylviachadha/muhivproject/static/js/3.9b47535b.chunk.js",
-    "static/js/3.9b47535b.chunk.js.map": "/sylviachadha/muhivproject/static/js/3.9b47535b.chunk.js.map",
-    "index.html": "/sylviachadha/muhivproject/index.html",
-    "static/css/2.ac73090f.chunk.css.map": "/sylviachadha/muhivproject/static/css/2.ac73090f.chunk.css.map",
-    "static/css/main.b94b1dd0.chunk.css.map": "/sylviachadha/muhivproject/static/css/main.b94b1dd0.chunk.css.map",
-    "static/js/2.8c3f31a1.chunk.js.LICENSE.txt": "/sylviachadha/muhivproject/static/js/2.8c3f31a1.chunk.js.LICENSE.txt",
-    "static/media/DB.34eb47d9.svg": "/sylviachadha/muhivproject/static/media/DB.34eb47d9.svg",
-    "static/media/Rep.fdc7c355.svg": "/sylviachadha/muhivproject/static/media/Rep.fdc7c355.svg",
-    "static/media/hivlogo.0a8385c5.svg": "/sylviachadha/muhivproject/static/media/hivlogo.0a8385c5.svg",
-    "static/media/model.45603956.svg": "/sylviachadha/muhivproject/static/media/model.45603956.svg"
+    "main.css": "/muhivproject/static/css/main.b94b1dd0.chunk.css",
+    "main.js": "/muhivproject/static/js/main.5e4b0feb.chunk.js",
+    "main.js.map": "/muhivproject/static/js/main.5e4b0feb.chunk.js.map",
+    "runtime-main.js": "/muhivproject/static/js/runtime-main.79d21c6d.js",
+    "runtime-main.js.map": "/muhivproject/static/js/runtime-main.79d21c6d.js.map",
+    "static/css/2.ac73090f.chunk.css": "/muhivproject/static/css/2.ac73090f.chunk.css",
+    "static/js/2.8c3f31a1.chunk.js": "/muhivproject/static/js/2.8c3f31a1.chunk.js",
+    "static/js/2.8c3f31a1.chunk.js.map": "/muhivproject/static/js/2.8c3f31a1.chunk.js.map",
+    "static/js/3.9b47535b.chunk.js": "/muhivproject/static/js/3.9b47535b.chunk.js",
+    "static/js/3.9b47535b.chunk.js.map": "/muhivproject/static/js/3.9b47535b.chunk.js.map",
+    "index.html": "/muhivproject/index.html",
+    "static/css/2.ac73090f.chunk.css.map": "/muhivproject/static/css/2.ac73090f.chunk.css.map",
+    "static/css/main.b94b1dd0.chunk.css.map": "/muhivproject/static/css/main.b94b1dd0.chunk.css.map",
+    "static/js/2.8c3f31a1.chunk.js.LICENSE.txt": "/muhivproject/static/js/2.8c3f31a1.chunk.js.LICENSE.txt",
+    "static/media/DB.34eb47d9.svg": "/muhivproject/static/media/DB.34eb47d9.svg",
+    "static/media/Rep.fdc7c355.svg": "/muhivproject/static/media/Rep.fdc7c355.svg",
+    "static/media/hivlogo.0a8385c5.svg": "/muhivproject/static/media/hivlogo.0a8385c5.svg",
+    "static/media/model.45603956.svg": "/muhivproject/static/media/model.45603956.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.2d9e7451.js",
+    "static/js/runtime-main.79d21c6d.js",
     "static/css/2.ac73090f.chunk.css",
     "static/js/2.8c3f31a1.chunk.js",
     "static/css/main.b94b1dd0.chunk.css",
-    "static/js/main.ecffd469.chunk.js"
+    "static/js/main.5e4b0feb.chunk.js"
   ]
 }
