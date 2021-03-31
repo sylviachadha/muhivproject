@@ -2,7 +2,7 @@
 
 const BangkokMap = {
     "label": "Map of Bangkok",
-    "viewBox":"0 0 1200 700",
+    "viewBox":"0 0 800 700",
     "locations": [
         {
             "name": "เขตบางพลัด",

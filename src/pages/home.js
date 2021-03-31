@@ -5,221 +5,182 @@ import {Typography} from "@material-ui/core";
 import dbimage from "../images/DB.svg"
 import rpimage from "../images/Rep.svg"
 import model from "../images/model.svg"
-import Box from "@material-ui/core/Box";
+import Tooltip from '@material-ui/core/Tooltip';
+import Button from '@material-ui/core/Button';
+import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles(theme => ({
-    mainContainer: {
+    main: {
         padding: 0,
-        margin: 0
+        margin: 0,
+        flexGrow: 1,
+
     },
-    grid1: {
-        padding: 10,
+    services: {
+        padding: "1em",
         backgroundColor: "#eaeaea",
+        width: "100%"
     },
-    grid2: {
-        padding: 30,
-        backgroundColor: "white",
-        borderBottom: '5px solid white',
-        // justifyContent: "flex-end"
+    serviceTitle:{
+        flexBasis: "20%",
     },
-    grid3: {
-        padding: 30,
-        backgroundColor: "white",
-        borderBottom: '5px solid white',
+    pageContent: {
+        marginTop: "3em",
     },
-    grid4: {
-        padding: 30,
-        backgroundColor: "white",
-        borderBottom: '5px solid white',
+    pageContentLeft: {
+        flexBasis: "50%",
+        marginBottom: "5em"
     },
-    griditem1: {
-        marginLeft: 300,
-        marginRight: 50,
-        backgroundColor: "#white",
+    h4: {
+        paddingLeft: "0.5em"
     },
-    griditem2: {
-        padding: 10,
-        backgroundColor: "white",
-        marginLeft: 30,
+    icons: {
+        width: "10em",
+        height: "6em",
     },
-    griditem3: {
-        marginLeft: 300,
-        marginRight: 50,
-        backgroundColor: "white",
+    smallIcons: {
+        width: "5em",
+        height: "3em",
+        marginRight: "2em"
 
     },
-    h4:{
-      paddingLeft:"0.5em"
-    },
-    leftContent: {
-      borderRight : ".5em solid white"
-    },
-    rightContent:{
-        borderLeft : ".5em solid white"
-    },
-    icon: {
-        width: 100,
-        height: 100,
-        backgroundColor: "white",
-        marginRight:"4em",
-        marginLeft:"3em"
 
-    },
-    icon1: {
-        width: 100,
-        height: 100,
-        backgroundColor: "white",
-        marginRight:"10em",
-        marginLeft:"10em"
-
-    },
-    logo: {
-        width: 50,
-        height: 50,
-        marginRight:"4em",
-        marginLeft:"3em"
-    },
-    vertical: {
-        borderLeft: "6px solid white",
-        height: "450px",
-        position: "absolute",
-        left: "50%"
-    }
 
 }))
 
 export default function Home() {
 
-    const classes = useStyles();
+    const classes = useStyles(
+
+    );
 
     return (
-        <Grid container className={classes.mainContainer} direction={"column"}>
-            <Grid item className={classes.grid1}>
+        <Grid container className={classes.main}>
+
+            <Grid item className={classes.services} xs={12}>
                 <Grid container>
-                    <Grid item>
+                    <Grid item className={classes.serviceTitle}>
                         <Typography className={classes.h4} variant={"h4"}>
                             Services
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <img
-                            className={classes.logo}
-                            alt="Dashboard icon"
-                            src={dbimage}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <img
-                            className={classes.logo}
-                            alt="Dashboard icon"
-                            src={rpimage}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <img
-                            className={classes.logo}
-                            alt="Dashboard icon"
-                            src={model}
-                        />
-                    </Grid>
-                </Grid>
-
-
-            </Grid>
-            <Grid item className={classes.grid2}>
-                {/*<Grid item className={classes.vertical}>*/}
-                {/*</Grid>*/}
-
-                <Grid container>
-                    <Grid item className={classes.griditem1}>
-                        <Grid container direction={"column"}>
-                            <Grid item >
-                                <Typography variant={"h4"}>
-                                    1. Dashboard
-                                </Typography>
-                            </Grid>
+                        <Grid container justify={"space-evenly"}>
                             <Grid item>
-                                <Typography variant={"subtitle1"}>
-                                    Check for Summarised and concise information
-                                </Typography>
-                                <Typography variant={"subtitle1"}>
-                                    Key metrics in one glance view, real time monitoring
-                                </Typography>
+                                <Tooltip placement="bottom" title="Dashboard">
+                                    <Button component={Link} to="/dashboard">
+                                        <img
+                                            className={classes.smallIcons}
+                                            alt="Dashboard"
+                                            src={dbimage}
+                                        /> </Button>
+                                </Tooltip>
+                            </Grid>
+
+                            <Grid item>
+                                <Tooltip placement="bottom" title="Report">
+                                    <Button component={Link} to="/report">
+                                        <img
+                                            className={classes.smallIcons}
+                                            alt="Report"
+                                            src={rpimage}
+                                        /></Button>
+                                </Tooltip>
+                            </Grid>
+
+                            <Grid item>
+                                <Tooltip placement="bottom" title="Model">
+                                    <Button component={Link} to="/model">
+                                        <img
+                                            className={classes.smallIcons}
+                                            alt="Model"
+                                            src={model}
+                                        /></Button>
+                                </Tooltip>
                             </Grid>
                         </Grid>
+
                     </Grid>
-                    <Grid item >
-                        <img
-                            className={classes.icon}
-                            alt="Dashboard icon"
-                            src={dbimage}
-                        />
-                    </Grid>
+
+
+
+                </Grid>
+            </Grid>
+            <Grid container className={classes.pageContent} justify={"center"}>
+                <Grid item className={classes.pageContentLeft}>
+                    <Typography variant={"h4"}>
+                        1. Dashboard
+                    </Typography>
+                    <Typography variant={"subtitle1"}>
+                        Check for Summarised and concise information
+                    </Typography>
+                    <Typography variant={"subtitle1"}>
+                        Key metrics in one glance view, real time monitoring
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Tooltip placement="right" title="Dashboard">
+                        <Button component={Link} to="/dashboard">
+                            <img
+                                className={classes.icons}
+                                alt="Dashboard icon"
+                                src={dbimage}
+                            /> </Button>
+                    </Tooltip>
+
+                </Grid>
+
+                <Grid item className={classes.pageContentLeft}>
+                    <Typography variant={"h4"}>
+                        2. Report
+                    </Typography>
+                    <Typography variant={"subtitle1"}>
+                        Check for Detailed information
+                    </Typography>
+                    <Typography variant={"subtitle1"}>
+                        Includes historic data analysis with Trend charts
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Tooltip placement="right" title="Report">
+                        <Button component={Link} to="/report">
+                            <img
+                                className={classes.icons}
+                                alt="Report"
+                                src={rpimage}
+                            /> </Button>
+                    </Tooltip>
+                </Grid>
+
+
+                <Grid item className={classes.pageContentLeft}>
+                    <Typography variant={"h4"}>
+                        3. Statistical Model
+                    </Typography>
+                    <Typography variant={"subtitle1"}>
+                        To infer about the population
+                    </Typography>
+                    <Typography variant={"subtitle1"}>
+                        Negative Binomial Distribution Model
+                    </Typography>
+                </Grid>
+                <Grid item>
+
+                    <Tooltip placement="right" title="Model">
+                        <Button component={Link} to="/model">
+                            <img
+                                className={classes.icons}
+                                alt="Model"
+                                src={model}
+                            /> </Button>
+                    </Tooltip>
+
                 </Grid>
 
             </Grid>
-            <Grid item className={classes.grid3}>
 
-                <Grid container>
-                    <Grid item className={classes.griditem3}>
-                        <Grid container direction={"column"}>
-                            <Grid item >
-                                <Typography variant={"h4"}>
-                                    2. Report
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant={"subtitle1"}>
-                                    Check for Detailed information
-                                </Typography>
-                                <Typography variant={"subtitle1"}>
-                                    Includes historic data analysis with Trend charts
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
 
-                    <Grid item className={classes.griditem2}>
-                        <img
-                            className={classes.icon}
-                            alt="Report icon"
-                            src={rpimage}
-                        />
-                    </Grid>
-                </Grid>
-
-            </Grid>
-            <Grid item className={classes.grid4}>
-
-                <Grid container>
-                    <Grid item className={classes.griditem1}>
-                        <Grid container direction={"column"}>
-                            <Grid item>
-                                <Typography variant={"h4"}>
-                                    3. Statistical Model
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant={"subtitle1"}>
-                                    To infer about the population
-                                </Typography>
-                                <Typography variant={"subtitle1"}>
-                                    Negative Binomial Distribution Model
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item >
-                        <img
-                            className={classes.icon1}
-                            alt="Models icon"
-                            src={model}
-                        />
-                    </Grid>
-                </Grid>
-
-            </Grid>
         </Grid>
     );
 }

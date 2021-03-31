@@ -3,15 +3,16 @@ import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import {Typography} from "@material-ui/core";
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Plot from "react-plotly.js";
 
 import {SVGMap} from "react-svg-map";
 import BangkokSVG from '../components/bangkokmap';
 import "../css/map.css";
 import "react-svg-map/lib/index.css";
+import Toolbar from "../components/toolbar";
+import Avatar from '@material-ui/core/Avatar';
+
 
 const useStyles = makeStyles(theme => ({
     mainContainer: {
@@ -42,13 +43,104 @@ const useStyles = makeStyles(theme => ({
 
 export default function Dashboard() {
 
+    const viridisColorscale = ['#fdcc8a', '#e34a33', '#b30000'];
+
+
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
+
+    const [startDate, setStartDate] = useState(new Date('2020-01-18'));
+    const [endDate, setEndDate] = useState(new Date()); // today's date
+    const [radioValue, setRadioValue] = React.useState('all');
+
+
+    const [gaugeData, setGaugeData] = React.useState({
+        g1: getRandomValue(80, 92),
+        g2: getRandomValue(5, 9),
+        g3: getRandomValue(20, 30),
+        g4: getRandomValue(4, 7),
+    })
+
+    const [statsData, setStatsData] = React.useState({
+        s1: getRandomInt(4000, 5000),
+        s2: getRandomInt(300, 400),
+        s3: getRandomInt(80, 92),
+        s4: getRandomInt(10, 20),
+        s5: getRandomInt(7, 37),
+        s6: getRandomInt(120, 160),
+        s7: getRandomInt(80, 92),
+        s8: getRandomInt(270, 600),
+        s9: getRandomInt(100, 200),
+        s10: getRandomInt(1300, 1500),
+    })
+
+    const [barData, setBarData] = useState({
+        b1LT: [25, 16, 20, 30],
+        b1Recent: [20, 14, 23, 35],
+
+        b2LT: [24, 40, 16, 10],
+        b2Recent: [20, 30, 25, 30],
+
+        b3LT: [18, 22, 30],
+        b3Recent: [15, 25, 37],
+
+        b4LT: [20, 40, 25],
+        b4Recent: [30, 50, 35],
+
+        b5LT: [120, 100, 80, 20, 20],
+        b5Recent: [271, 200, 178, 90, 88],
+
+    })
+
+
+    const handleGoClick = async () => {
+
+        setGaugeData({
+            g1: getRandomValue(80, 92),
+            g2: getRandomValue(5, 9),
+            g3: getRandomValue(20, 30),
+            g4: getRandomValue(4, 7),
+        })
+
+        setStatsData({
+            s1: getRandomInt(4000, 5000),
+            s2: getRandomInt(300, 400),
+            s3: getRandomInt(80, 92),
+            s4: getRandomInt(10, 20),
+            s5: getRandomInt(7, 37),
+            s6: getRandomInt(120, 160),
+            s7: getRandomInt(80, 92),
+            s8: getRandomInt(270, 600),
+            s9: getRandomInt(100, 200),
+            s10: getRandomInt(1300, 1500),
+        })
+
+        setBarData(prevState => ({
+            ...prevState,
+            b1Recent: prevState.b1Recent.map(x => x + getRandomInt(-1, 3)),
+            b1LT: prevState.b1LT.map(x => x + getRandomInt(-1, 3)),
+
+            b2Recent: prevState.b2Recent.map(x => x + getRandomInt(-1, 3)),
+            b2LT: prevState.b2LT.map(x => x + getRandomInt(-1, 3)),
+
+            b3Recent: prevState.b3Recent.map(x => x + getRandomInt(-1, 3)),
+            b3LT: prevState.b3LT.map(x => x + getRandomInt(-1, 3)),
+
+            b4Recent: prevState.b4Recent.map(x => x + getRandomInt(-1, 3)),
+            b4LT: prevState.b4LT.map(x => x + getRandomInt(-1, 3)),
+
+            b5Recent: prevState.b5Recent.map(x => x + getRandomInt(-1, 3)),
+            b5LT: prevState.b5LT.map(x => x + getRandomInt(-1, 3)),
+        }));
+
+
+    }
+
 
     const Gauge1data = [
         {
             domain: {x: [0, 1], y: [0, 1]},
-            value: 90.1, number: {suffix: "%"},
+            value: gaugeData.g1, number: {suffix: "%"},
             title: {text: "Tested by RTRI"},
             type: "indicator",
             mode: "gauge+number",
@@ -60,7 +152,7 @@ export default function Dashboard() {
     const Gauge2data = [
         {
             domain: {x: [0, 1], y: [0, 1]},
-            value: 8.8, number: {suffix: "%"},
+            value: gaugeData.g2, number: {suffix: "%"},
             title: {text: "RTRI Recent"},
             type: "indicator",
             mode: "gauge+number",
@@ -72,7 +164,7 @@ export default function Dashboard() {
     const Gauge3data = [
         {
             domain: {x: [0, 1], y: [0, 1]},
-            value: 25, number: {suffix: "%"},
+            value: gaugeData.g3, number: {suffix: "%"},
             title: {text: "Reclassified Longterm"},
             type: "indicator",
             mode: "gauge+number",
@@ -84,7 +176,7 @@ export default function Dashboard() {
     const Gauge4data = [
         {
             domain: {x: [0, 1], y: [0, 1]},
-            value: 5.5, number: {suffix: "%"},
+            value: gaugeData.g4, number: {suffix: "%"},
             title: {text: "RITA Recent"},
             type: "indicator",
             mode: "gauge+number",
@@ -93,17 +185,40 @@ export default function Dashboard() {
         }
     ];
 
+
+    function getBarData(recent, lt) {
+
+        if (radioValue === "longTerm") {
+            return {
+                lt: lt,
+                recent: []
+            }
+
+        } else if (radioValue === "recent") {
+            return {
+                lt: [],
+                recent: recent
+            }
+        } else {
+            return {
+                lt: lt,
+                recent: recent
+            }
+        }
+    }
+
     // Site Location
-    const xValue = ['VCT Site1', 'VCT Site2', 'VCT Site3', 'VCT Site4'];
+    const bySiteX = ['VCT Site1', 'VCT Site2', 'VCT Site3', 'VCT Site4']
+    const bySiteData = getBarData(barData.b1Recent, barData.b1LT)
+    const bySiteLTData = bySiteData.lt
+    const bySiteRecentData = bySiteData.recent
 
-    const yValue = [20, 14, 23, 50];
-    const yValue2 = [24, 16, 20, 30];
 
-    const trace0 = {
-        x: xValue,
-        y: yValue,
+    const bySiteLongTerm = {
+        x: bySiteX,
+        y: bySiteLTData,
         type: 'bar',
-        text: yValue.map(String),
+        text: bySiteLTData.map(String),
         textposition: 'auto',
         hoverinfo: 'none',
         name: "LT",
@@ -117,11 +232,11 @@ export default function Dashboard() {
         }
     };
 
-    const trace1 = {
-        x: xValue,
-        y: yValue2,
+    const bySiteRecent = {
+        x: bySiteX,
+        y: bySiteRecentData,
         type: 'bar',
-        text: yValue2.map(String),
+        text: bySiteRecentData.map(String),
         textposition: 'auto',
         hoverinfo: 'none',
         name: "Recent",
@@ -134,11 +249,11 @@ export default function Dashboard() {
         }
     };
 
-    const Bar1Data = [trace0, trace1];
+    const BySiteBarData = [bySiteRecent, bySiteLongTerm];
 
-    const Bar1Layout = {
-        width: 400,
-        height: 400,
+    const BySiteBarLayout = {
+        width: 380,
+        height: 380,
         title: "RTRI by Site",
         xaxis: {title: 'Hospitals'},
         yaxis: {title: 'No of HIV Cases'}
@@ -146,16 +261,17 @@ export default function Dashboard() {
 
 
     // Age Group
-    const x1Value = ['15-25', '25-35', '35-45', '45-55'];
+    const byAgeX = ['VCT Site1', 'VCT Site2', 'VCT Site3', 'VCT Site4']
+    const byAgeData = getBarData(barData.b2Recent, barData.b2LT)
+    const byAgeLTData = byAgeData.lt
+    const byAgeRecentData = byAgeData.recent
 
-    const y1Value = [20, 30, 25, 30];
-    const y1Value2 = [24, 40, 16, 10];
 
-    const trace2 = {
-        x: x1Value,
-        y: y1Value,
+    const byAgeLT = {
+        x: byAgeX,
+        y: byAgeLTData,
         type: 'bar',
-        text: y1Value.map(String),
+        text: byAgeLTData.map(String),
         textposition: 'auto',
         hoverinfo: 'none',
         name: "LT",
@@ -169,11 +285,11 @@ export default function Dashboard() {
         }
     };
 
-    const trace3 = {
-        x: x1Value,
-        y: y1Value2,
+    const byAgeRecent = {
+        x: byAgeX,
+        y: byAgeRecentData,
         type: 'bar',
-        text: y1Value2.map(String),
+        text: byAgeRecentData.map(String),
         textposition: 'auto',
         hoverinfo: 'none',
         name: "Recent",
@@ -186,9 +302,9 @@ export default function Dashboard() {
         }
     };
 
-    const Bar2Data = [trace2, trace3];
+    const ByAgeBarData = [byAgeRecent, byAgeLT];
 
-    const Bar2Layout = {
+    const ByAgeBarLayout = {
         width: 450,
         height: 350,
         title: "By Age Group",
@@ -197,16 +313,17 @@ export default function Dashboard() {
     };
 
     // Gender
-    const x2Value = ['Male', 'Female', 'Transgender'];
+    const byGenderX = ['Male', 'Female', 'Transgender']
+    const byGenderData = getBarData(barData.b3Recent, barData.b3LT)
+    const byGenderLTData = byGenderData.lt
+    const byGenderRecentData = byGenderData.recent
 
-    const y2Value = [15, 25, 37];
-    const y2Value2 = [18, 22, 30];
 
-    const trace4 = {
-        x: x2Value,
-        y: y2Value,
+    const byGenderLT = {
+        x: byGenderX,
+        y: byGenderLTData,
         type: 'bar',
-        text: y2Value.map(String),
+        text: byGenderLTData.map(String),
         textposition: 'auto',
         hoverinfo: 'none',
         name: "LT",
@@ -220,11 +337,11 @@ export default function Dashboard() {
         }
     };
 
-    const trace5 = {
-        x: x2Value,
-        y: y2Value2,
+    const byGenderRecent = {
+        x: byGenderX,
+        y: byGenderRecentData,
         type: 'bar',
-        text: y2Value2.map(String),
+        text: byGenderRecentData.map(String),
         textposition: 'auto',
         hoverinfo: 'none',
         name: "Recent",
@@ -237,9 +354,9 @@ export default function Dashboard() {
         }
     };
 
-    const Bar3Data = [trace4, trace5];
+    const BarByGenderData = [byGenderRecent, byGenderLT];
 
-    const Bar3Layout = {
+    const BarByGenderLayout = {
         width: 410,
         height: 350,
         title: "By Gender",
@@ -248,16 +365,18 @@ export default function Dashboard() {
     };
 
     // Marital Status
-    const x3Value = ['Single', 'Married', 'Divorced'];
+    const byMStatusX = ['Single', 'Married', 'Divorced'];
+    const byMStatusData = getBarData(barData.b4Recent, barData.b4LT)
 
-    const y3Value = [20, 40, 25];
-    const y3Value2 = [24, 30, 16];
+    const byMStatusLTData = byMStatusData.lt
+    const byMStatusRecentData = byMStatusData.recent
 
-    const trace6 = {
-        x: x3Value,
-        y: y3Value,
+
+    const byMStatusLT = {
+        x: byMStatusX,
+        y: byMStatusLTData,
         type: 'bar',
-        text: y3Value.map(String),
+        text: byMStatusLTData.map(String),
         textposition: 'auto',
         hoverinfo: 'none',
         name: "LT",
@@ -271,11 +390,11 @@ export default function Dashboard() {
         }
     };
 
-    const trace7 = {
-        x: x3Value,
-        y: y3Value2,
+    const byMStatusRecent = {
+        x: byMStatusX,
+        y: byMStatusRecentData,
         type: 'bar',
-        text: y3Value2.map(String),
+        text: byMStatusRecentData.map(String),
         textposition: 'auto',
         hoverinfo: 'none',
         name: "Recent",
@@ -288,9 +407,9 @@ export default function Dashboard() {
         }
     };
 
-    const Bar4Data = [trace6, trace7];
+    const BarByMStatusData = [byMStatusRecent, byMStatusLT];
 
-    const Bar4Layout = {
+    const BarByMStatusLayout = {
         width: 420,
         height: 350,
         title: "Marital Status",
@@ -298,9 +417,10 @@ export default function Dashboard() {
         yaxis: {title: 'No of HIV Cases'}
     };
 
+
     // Pie Recent Infection
     const Pie1Data = [{
-        values: [150, 280],
+        values: [150, 200],
         labels: ['Recent', 'Long-Term'],
         type: 'pie'
     }];
@@ -310,7 +430,6 @@ export default function Dashboard() {
         height: 400,
         title: 'RITA by Percentage'
     };
-
 
 
     const Pie2Data = [{
@@ -364,16 +483,17 @@ export default function Dashboard() {
 
 
     //HIV Partner Test
-    const x5Value = ['Contacted', 'Tested', 'HIV +ve', 'Recency +ve', 'On ART'];
 
-    const y5Value = [120, 100, 80, 20, 20];
-    const y5Value2 = [271, 200, 178, 90, 88];
+    const byPartnerTestX = ['Contacted', 'Tested', 'HIV +ve', 'Recency +ve', 'On ART'];
+    const byPartnerData = getBarData(barData.b5Recent, barData.b5LT)
+    const byPartnerTestLTData = byPartnerData.lt
+    const byPartnerTestRecentData = byPartnerData.recent
 
-    const trace8 = {
-        x: x5Value,
-        y: y5Value,
+    const byPartnerTestLT = {
+        x: byPartnerTestX,
+        y: byPartnerTestLTData,
         type: 'bar',
-        text: y5Value.map(String),
+        text: byPartnerTestLTData.map(String),
         textposition: 'auto',
         hoverinfo: 'none',
         name: "LT",
@@ -387,11 +507,11 @@ export default function Dashboard() {
         }
     };
 
-    const trace9 = {
-        x: x5Value,
-        y: y5Value2,
+    const byPartnerTestRecent = {
+        x: byPartnerTestX,
+        y: byPartnerTestRecentData,
         type: 'bar',
-        text: y5Value2.map(String),
+        text: byPartnerTestRecentData.map(String),
         textposition: 'auto',
         hoverinfo: 'none',
         name: "Recent",
@@ -404,9 +524,9 @@ export default function Dashboard() {
         }
     };
 
-    const Bar5Data = [trace8, trace9];
+    const BarByPartnerTestData = [byPartnerTestRecent, byPartnerTestLT];
 
-    const Bar5Layout = {
+    const BarByPartnerTestLayout = {
         width: 480,
         height: 350,
         title: "HIV Partner Test",
@@ -515,6 +635,15 @@ export default function Dashboard() {
 
     return (
         <Grid container className={classes.mainContainer} direction={"column"}>
+            <Grid item>
+                <Toolbar startDate={startDate}
+                         setStartDate={setStartDate}
+                         endDate={endDate}
+                         setEndDate={setEndDate}
+                         radioValue={radioValue}
+                         setRadioValue={setRadioValue}
+                         handleGoClick={handleGoClick}/>
+            </Grid>
             <Grid item className={classes.maingrid1}>
                 <Grid container direction={"row"}>
                     <Grid item>
@@ -524,7 +653,7 @@ export default function Dashboard() {
                                     <CardContent>
 
                                         <Typography className={classes.h4} variant="h4" component="h2">
-                                            4321
+                                            {statsData.s1}
                                         </Typography>
                                         <Typography className={classes.pos} color="textSecondary">
 
@@ -539,7 +668,7 @@ export default function Dashboard() {
                                     <CardContent>
 
                                         <Typography className={classes.h4} variant="h4" component="h2">
-                                            318
+                                            {statsData.s2}
                                         </Typography>
                                         <Typography className={classes.pos} color="textSecondary">
 
@@ -549,7 +678,7 @@ export default function Dashboard() {
                                         </Typography>
                                         <Typography className={classes.h4} variant="h4" component="h2">
                                             <br/>
-                                            57
+                                            {statsData.s3}
                                         </Typography>
                                         <Typography className={classes.pos} color="textSecondary">
 
@@ -564,7 +693,7 @@ export default function Dashboard() {
                                     <CardContent>
 
                                         <Typography className={classes.h4} variant="h4" component="h2">
-                                            5
+                                            {statsData.s4}
                                         </Typography>
                                         <Typography className={classes.pos} color="textSecondary">
 
@@ -574,7 +703,7 @@ export default function Dashboard() {
                                         </Typography>
                                         <Typography className={classes.h4} variant="h4" component="h2">
                                             <br/>
-                                            52
+                                            {statsData.s5}
                                         </Typography>
                                         <Typography className={classes.pos} color="textSecondary">
 
@@ -589,7 +718,7 @@ export default function Dashboard() {
                                     <CardContent>
 
                                         <Typography className={classes.h4} variant="h4" component="h2">
-                                            4
+                                            {statsData.s6}
                                         </Typography>
                                         <Typography className={classes.pos} color="textSecondary">
 
@@ -599,7 +728,7 @@ export default function Dashboard() {
                                         </Typography>
                                         <Typography className={classes.h4} variant="h4" component="h2">
                                             <br/>
-                                            1
+                                            {statsData.s7}
                                         </Typography>
                                         <Typography className={classes.pos} color="textSecondary">
 
@@ -614,7 +743,7 @@ export default function Dashboard() {
                                     <CardContent>
 
                                         <Typography className={classes.h4} variant="h4" component="h2">
-                                            3
+                                            {statsData.s8}
                                         </Typography>
                                         <Typography className={classes.pos} color="textSecondary">
 
@@ -624,7 +753,7 @@ export default function Dashboard() {
                                         </Typography>
                                         <Typography className={classes.h4} variant="h4" component="h2">
                                             <br/>
-                                            52
+                                            {statsData.s9}
                                         </Typography>
                                         <Typography className={classes.pos} color="textSecondary">
 
@@ -643,7 +772,7 @@ export default function Dashboard() {
                                     <CardContent>
 
                                         <Typography className={classes.h4} variant="h4" component="h2">
-                                            402
+                                            {statsData.s10}
                                         </Typography>
                                         <Typography className={classes.pos} color="textSecondary">
 
@@ -732,8 +861,8 @@ export default function Dashboard() {
                                             <CardContent>
 
                                                 <Plot
-                                                    data={Bar1Data}
-                                                    layout={Bar1Layout}
+                                                    data={BySiteBarData}
+                                                    layout={BySiteBarLayout}
 
                                                     // To disable trace
                                                     config={{displayModeBar: false, staticPlot: false}}
@@ -757,21 +886,58 @@ export default function Dashboard() {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item  style={{marginTop:"2em",marginLeft:"6em"}}>
-                                <Grid container>
-                                    <p className={classes.title}>Hotspot Locations</p>
-                                    <SVGMap
-                                        map={BangkokSVG}
-                                        locationClassName={getLocationClassName}
-                                        onLocationMouseOver={handleLocationMouseOver}
-                                        onLocationMouseOut={handleLocationMouseOut}
-                                        onLocationMouseMove={handleLocationMouseMove}
+                            <Grid item>
+                                <Grid container direction={"row"} style={{margin:"0 2em"}}>
+                                    <Grid item style={{width:"67%"}}>
+                                        <p className={classes.title}>Hotspot Locations</p>
+                                        <SVGMap
+                                            map={BangkokSVG}
+                                            locationClassName={getLocationClassName}
+                                            onLocationMouseOver={handleLocationMouseOver}
+                                            onLocationMouseOut={handleLocationMouseOut}
+                                            onLocationMouseMove={handleLocationMouseMove}
 
-                                    />
-                                    <div className="svg-map-tooltip" style={data.tooltipStyle}>
-                                        <div>Location:{data.pointedLocation}</div>
-                                        <div>Count:{data.count}</div>
-                                    </div>
+                                        />
+                                        <div className="svg-map-tooltip" style={data.tooltipStyle}>
+                                            <div>Location:{data.pointedLocation}</div>
+                                            <div>Count:{data.count}</div>
+                                        </div>
+                                    </Grid>
+                                    <Grid item style={{margin:"0 4em 0 5em", height: '10em'}}>
+                                        <Grid container style={{margin:"20em 0 0 0"}} alignItems={"center"}>
+                                            <Grid item>
+                                                <Avatar variant="square" style={{backgroundColor:"#fdcc8a",width:"30px", height:"30px"}}>
+                                                    {``}
+                                                </Avatar>
+                                            </Grid>
+                                            <Grid item>
+                                                <p style={{marginLeft:"1em"}}>Low</p>
+                                            </Grid>
+                                        </Grid>
+
+                                        <Grid container alignItems={"center"}>
+                                            <Grid item>
+                                                <Avatar variant="square" style={{backgroundColor:"#e34a33",width:"30px", height:"30px"}}>
+                                                    {``}
+                                                </Avatar>
+                                            </Grid>
+                                            <Grid item>
+                                                <p style={{marginLeft:"1em"}}>Medium</p>
+                                            </Grid>
+                                        </Grid>
+
+                                        <Grid container alignItems={"center"}>
+                                            <Grid item>
+                                                <Avatar variant="square" style={{backgroundColor:"#b30000", width:"30px", height:"30px"}}>
+                                                    {``}
+                                                </Avatar>
+                                            </Grid>
+                                            <Grid item>
+                                                <p style={{marginLeft:"1em"}}>High</p>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -779,15 +945,15 @@ export default function Dashboard() {
                 </Grid>
             </Grid>
 
-            <Grid item className={classes.maingrid3}>
-                <Grid container>
+            <Grid item style={{marginTop: "2em"}}>
+                <Grid container >
                     <Grid item>
                         <Card className={classes.root} variant="outlined">
                             <CardContent>
 
                                 <Plot
-                                    data={Bar2Data}
-                                    layout={Bar2Layout}
+                                    data={ByAgeBarData}
+                                    layout={ByAgeBarLayout}
 
                                     // To disable trace
                                     config={{displayModeBar: false, staticPlot: false}}
@@ -812,10 +978,9 @@ export default function Dashboard() {
                     <Grid item>
                         <Card className={classes.root} variant="outlined">
                             <CardContent>
-
                                 <Plot
-                                    data={Bar4Data}
-                                    layout={Bar4Layout}
+                                    data={BarByMStatusData}
+                                    layout={BarByMStatusLayout}
 
                                     // To disable trace
                                     config={{displayModeBar: false, staticPlot: false}}
@@ -826,15 +991,15 @@ export default function Dashboard() {
                 </Grid>
             </Grid>
 
-            <Grid item className={classes.maingrid4}>
-                <Grid container>
+            <Grid item style={{marginTop: "2em"}}>
+                <Grid container >
                     <Grid item>
                         <Card className={classes.root} variant="outlined">
                             <CardContent>
 
                                 <Plot
-                                    data={Bar3Data}
-                                    layout={Bar3Layout}
+                                    data={BarByGenderData}
+                                    layout={BarByGenderLayout}
 
                                     // To disable trace
                                     config={{displayModeBar: false, staticPlot: false}}
@@ -861,8 +1026,8 @@ export default function Dashboard() {
                             <CardContent>
 
                                 <Plot
-                                    data={Bar5Data}
-                                    layout={Bar5Layout}
+                                    data={BarByPartnerTestData}
+                                    layout={BarByPartnerTestLayout}
 
                                     // To disable trace
                                     config={{displayModeBar: false, staticPlot: false}}
@@ -901,4 +1066,26 @@ function calculateMedian(values) {
 
     return (values[half - 1] + values[half]) / 2.0;
 }
+
 // Map function
+Date.prototype.yyyymmdd = function () {
+    const mm = this.getMonth() + 1; // getMonth() is zero-based
+    const dd = this.getDate();
+
+    return [this.getFullYear(), "-",
+        (mm > 9 ? '' : '0') + mm, "-",
+        (dd > 9 ? '' : '0') + dd
+    ].join('');
+};
+
+function getRandomValue(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return (Math.random() * (max - min) + min)
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
