@@ -37,7 +37,7 @@ function App() {
                         <Route path="/by-risk" component={Risk} exact/>
                         <Route path="/by-outcome" component={PartnerHiv} exact/>
                         <Route path="/by-site" component={Site} exact/>
-                        <Route path="/by-area"   component={() => <Area mapWidth={"800px"} />} exact/>
+                        <Route path="/by-area"   component={() => <Area/>} exact/>
 
                     </Switch>
                 </Grid>

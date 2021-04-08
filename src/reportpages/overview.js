@@ -14,30 +14,25 @@ import Plot from "react-plotly.js";
 
 const useStyles = makeStyles(theme => ({
     mainContainer: {
-        padding: 0,
-        margin: 0
+        height: "100%",
     },
     sideMenu: {
-        display: "inline-block",
-        position: "absolute",
         height: "100%",
-        width: "300px",
-        backgroundColor: '#1f5f8b'
+        minWidth: "22%",
+        backgroundColor: '#1f5f8b',
     },
-    sideMenu2: {
-    },
+    sideMenu2: {},
     item: {
-        marginLeft: 350
+        marginLeft: "23em",
     },
     itemHeading: {
-        marginLeft: 350,
-        marginTop: 20,
+        marginLeft: "23em",
+        marginTop: "5em",
         borderBottom: "3px solid #cdd0cb",
         width: "80%"
     },
     text: {
-        marginTop: 30,
-        marginBottom: 50,
+        marginTop: "2em",
         fontWeight: "200"
     },
     root: {
@@ -98,248 +93,266 @@ export default function Report() {
 
         <Grid container className={classes.mainContainer}>
             <Grid item className={classes.sideMenu}>
-                <VerticalMenu></VerticalMenu>
+                <VerticalMenu/>
             </Grid>
             <Grid item>
-                <Grid container className={classes.sideMenu2} direction={"column"}>
-                    <Grid item className={classes.itemHeading}>
-                        <Typography variant={'h6'}>
-                            Overall Testing
-                        </Typography>
-                    </Grid>
-                    <Grid item className={classes.item}>
-                        <Grid container className={classes.text} >
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                <Grid item>
+                    <Grid container className={classes.sideMenu2} direction={"column"}>
+                        <Grid item className={classes.itemHeading}>
+                            <Typography variant={'h6'}>
+                                Overall Testing
+                            </Typography>
+                        </Grid>
+                        <Grid item className={classes.item}>
+                            <Grid container className={classes.text}>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Typography className={classes.h4} variant="h4" component="h2">
+                                            <Typography className={classes.h4} variant="h4" component="h2">
 
-                                            318
+                                                318
 
-                                        </Typography>
-                                        <Typography className={classes.pos} color="textSecondary">
-                                            <br/>
-                                            Newly Diagnosed HIV +ve
-                                            <br/>
+                                            </Typography>
+                                            <Typography className={classes.pos} color="textSecondary">
+                                                <br/>
+                                                Newly Diagnosed HIV +ve
+                                                <br/>
 
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Typography className={classes.h4} variant="h4" component="h2">
-                                            310
+                                            <Typography className={classes.h4} variant="h4" component="h2">
+                                                310
 
-                                        </Typography>
-                                        <Typography className={classes.pos} color="textSecondary">
-                                            <br/>
-                                            Tested by RTRI
-                                            <br/>
+                                            </Typography>
+                                            <Typography className={classes.pos} color="textSecondary">
+                                                <br/>
+                                                Tested by RTRI
+                                                <br/>
 
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Plot
-                                            data={Gauge1data}
-                                            layout={{width: 320, height: 220, margin: { t: 0, b: 0 },  paper_bgcolor: "lavender",
-                                            }}
+                                            <Plot
+                                                data={Gauge1data}
+                                                layout={{
+                                                    width: 320,
+                                                    height: 220,
+                                                    margin: {t: 0, b: 0},
+                                                    paper_bgcolor: "lavender",
+                                                }}
 
-                                            // To disable trace
-                                            config={{displayModeBar:false,staticPlot:false}}
-                                        />
-                                    </CardContent>
-                                </Card>
+                                                // To disable trace
+                                                config={{displayModeBar: false, staticPlot: false}}
+                                            />
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                    <Grid item className={classes.itemHeading}>
-                        <Typography variant={'h6'}>
-                            Rapid Test for Recent Infection [RTRI] Result
-                        </Typography>
-                    </Grid>
-                    <Grid item className={classes.item}>
-                        <Grid container className={classes.text}>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                        <Grid item className={classes.itemHeading}>
+                            <Typography variant={'h6'}>
+                                Rapid Test for Recent Infection [RTRI] Result
+                            </Typography>
+                        </Grid>
+                        <Grid item className={classes.item}>
+                            <Grid container className={classes.text}>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Typography className={classes.h4} variant="h4" component="h2">
+                                            <Typography className={classes.h4} variant="h4" component="h2">
 
-                                            70
+                                                70
 
-                                        </Typography>
-                                        <Typography className={classes.pos} color="textSecondary">
-                                            <br/>
-                                            RTRI Recent
-                                            <br/>
+                                            </Typography>
+                                            <Typography className={classes.pos} color="textSecondary">
+                                                <br/>
+                                                RTRI Recent
+                                                <br/>
 
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Typography className={classes.h4} variant="h4" component="h2">
-                                            240
+                                            <Typography className={classes.h4} variant="h4" component="h2">
+                                                240
 
-                                        </Typography>
-                                        <Typography className={classes.pos} color="textSecondary">
-                                            <br/>
-                                            Longterm
-                                            <br/>
+                                            </Typography>
+                                            <Typography className={classes.pos} color="textSecondary">
+                                                <br/>
+                                                Longterm
+                                                <br/>
 
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Plot
-                                            data={Gauge2data}
-                                            layout={{width: 320, height: 220, margin: { t: 0, b: 0 },  paper_bgcolor: "lavender",
-                                            }}
+                                            <Plot
+                                                data={Gauge2data}
+                                                layout={{
+                                                    width: 320,
+                                                    height: 220,
+                                                    margin: {t: 0, b: 0},
+                                                    paper_bgcolor: "lavender",
+                                                }}
 
-                                            // To disable trace
-                                            config={{displayModeBar:false,staticPlot:false}}
-                                        />
-                                    </CardContent>
-                                </Card>
+                                                // To disable trace
+                                                config={{displayModeBar: false, staticPlot: false}}
+                                            />
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                    <Grid item className={classes.itemHeading}>
-                        <Typography variant={'h6'}>
-                            Viral Load Test Results
-                        </Typography>
-                    </Grid>
-                    <Grid item className={classes.item}>
-                        <Grid container className={classes.text}>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                        <Grid item className={classes.itemHeading}>
+                            <Typography variant={'h6'}>
+                                Viral Load Test Results
+                            </Typography>
+                        </Grid>
+                        <Grid item className={classes.item}>
+                            <Grid container className={classes.text}>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Typography className={classes.h4} variant="h4" component="h2">
+                                            <Typography className={classes.h4} variant="h4" component="h2">
 
-                                            65
+                                                65
 
-                                        </Typography>
-                                        <Typography className={classes.pos} color="textSecondary">
-                                            <br/>
-                                            VL Result Complete
-                                            <br/>
+                                            </Typography>
+                                            <Typography className={classes.pos} color="textSecondary">
+                                                <br/>
+                                                VL Result Complete
+                                                <br/>
 
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Typography className={classes.h4} variant="h4" component="h2">
-                                            5
+                                            <Typography className={classes.h4} variant="h4" component="h2">
+                                                5
 
-                                        </Typography>
-                                        <Typography className={classes.pos} color="textSecondary">
-                                            <br/>
-                                            Reclassified Longterm
-                                            <br/>
+                                            </Typography>
+                                            <Typography className={classes.pos} color="textSecondary">
+                                                <br/>
+                                                Reclassified Longterm
+                                                <br/>
 
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Plot
-                                            data={Gauge3data}
-                                            layout={{width: 320, height: 220, margin: { t: 0, b: 0 },  paper_bgcolor: "lavender",
-                                            }}
+                                            <Plot
+                                                data={Gauge3data}
+                                                layout={{
+                                                    width: 320,
+                                                    height: 220,
+                                                    margin: {t: 0, b: 0},
+                                                    paper_bgcolor: "lavender",
+                                                }}
 
-                                            // To disable trace
-                                            config={{displayModeBar:false,staticPlot:false}}
-                                        />
-                                    </CardContent>
-                                </Card>
+                                                // To disable trace
+                                                config={{displayModeBar: false, staticPlot: false}}
+                                            />
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                    <Grid item className={classes.itemHeading}>
-                        <Typography variant={'h6'}>
-                            Recent Infection Testing Algorithm [RITA] Result
-                        </Typography>
+                        <Grid item className={classes.itemHeading}>
+                            <Typography variant={'h6'}>
+                                Recent Infection Testing Algorithm [RITA] Result
+                            </Typography>
 
-                    </Grid>
-                    <Grid item className={classes.item}>
-                        <Grid container className={classes.text}>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                        </Grid>
+                        <Grid item className={classes.item}>
+                            <Grid container className={classes.text}>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Typography className={classes.h4} variant="h4" component="h2">
+                                            <Typography className={classes.h4} variant="h4" component="h2">
 
-                                            62
+                                                62
 
-                                        </Typography>
-                                        <Typography className={classes.pos} color="textSecondary">
-                                            <br/>
-                                            RITA Recent
-                                            <br/>
+                                            </Typography>
+                                            <Typography className={classes.pos} color="textSecondary">
+                                                <br/>
+                                                RITA Recent
+                                                <br/>
 
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Typography className={classes.h4} variant="h4" component="h2">
-                                            3
+                                            <Typography className={classes.h4} variant="h4" component="h2">
+                                                3
 
-                                        </Typography>
-                                        <Typography className={classes.pos} color="textSecondary">
-                                            <br/>
-                                            Longterm
-                                            <br/>
+                                            </Typography>
+                                            <Typography className={classes.pos} color="textSecondary">
+                                                <br/>
+                                                Longterm
+                                                <br/>
 
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Plot
-                                            data={Gauge3data}
-                                            layout={{width: 320, height: 220, margin: { t: 0, b: 0 },  paper_bgcolor: "lavender",
-                                            }}
+                                            <Plot
+                                                data={Gauge3data}
+                                                layout={{
+                                                    width: 320,
+                                                    height: 220,
+                                                    margin: {t: 0, b: 0},
+                                                    paper_bgcolor: "lavender",
+                                                }}
 
-                                            // To disable trace
-                                            config={{displayModeBar:false,staticPlot:false}}
-                                        />
-                                    </CardContent>
-                                </Card>
+                                                // To disable trace
+                                                config={{displayModeBar: false, staticPlot: false}}
+                                            />
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
 
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>

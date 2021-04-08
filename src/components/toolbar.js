@@ -14,8 +14,9 @@ import Radio from "@material-ui/core/Radio";
 const useStyles = makeStyles(theme => ({
     toolbar: {
         padding: ".2em 0 .7em 0",
+        position:"fixed",
         margin: 0,
-        backgroundColor: '#e8eae6'
+        backgroundColor: '#e8eae6',
     },
     mainContainer2: {
         padding: 0,

@@ -16,9 +16,14 @@ import AssessmentIcon from '@material-ui/icons/Assessment';
 const useStyles = makeStyles((theme) => ({
     root: {
         // backgroundColor: '#364f6b','#5588a3'
+        position: "fixed",
+        marginTop: "3.22em",
+        marginBottom: "3.22em",
         height: "100%",
+        width: "23%",
         backgroundColor: '#1f5f8b',
         color: 'white',
+        zIndex: "3",
         fontSize: 20,
         listItemText: {
             fontSize: '5em',//Insert your required size

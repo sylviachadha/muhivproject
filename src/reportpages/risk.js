@@ -19,11 +19,12 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#1f5f8b'
     },
     item: {
-        marginLeft: 350
+        marginLeft: "23em"
+
     },
     itemHeading: {
-        marginLeft: 350,
-        marginTop: 20,
+        marginLeft: "23em",
+        marginTop: "5em",
         // borderBottom: "3px solid #cdd0cb",
         width: "80%"
     },

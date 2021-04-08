@@ -13,16 +13,19 @@ import {Link} from "react-router-dom";
 const useStyles = makeStyles(theme => ({
     main: {
         padding: 0,
-        margin: 0,
+        marginTop: "4em",
         flexGrow: 1,
 
     },
     services: {
         padding: "1em",
         backgroundColor: "#eaeaea",
-        width: "100%"
+        width: "100%",
+        zIndex: "5"
+
     },
     serviceTitle: {
+        paddingTop:".5em",
         flexBasis: "20%",
     },
     pageContent: {
