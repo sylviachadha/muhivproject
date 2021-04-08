@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/muhivproject/static/css/main.317d6f9e.chunk.css",
-    "main.js": "/muhivproject/static/js/main.773ab655.chunk.js",
-    "main.js.map": "/muhivproject/static/js/main.773ab655.chunk.js.map",
+    "main.js": "/muhivproject/static/js/main.fb762b7e.chunk.js",
+    "main.js.map": "/muhivproject/static/js/main.fb762b7e.chunk.js.map",
     "runtime-main.js": "/muhivproject/static/js/runtime-main.4f376704.js",
     "runtime-main.js.map": "/muhivproject/static/js/runtime-main.4f376704.js.map",
     "static/css/2.ac73090f.chunk.css": "/muhivproject/static/css/2.ac73090f.chunk.css",
@@ -23,6 +23,6 @@
     "static/css/2.ac73090f.chunk.css",
     "static/js/2.441454a3.chunk.js",
     "static/css/main.317d6f9e.chunk.css",
-    "static/js/main.773ab655.chunk.js"
+    "static/js/main.fb762b7e.chunk.js"
   ]
 }
