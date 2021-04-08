@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: "#eaeaea",
         width: "100%"
     },
-    serviceTitle:{
+    serviceTitle: {
         flexBasis: "20%",
     },
     pageContent: {
@@ -80,7 +80,7 @@ export default function Home() {
 
                             <Grid item>
                                 <Tooltip placement="bottom" title="Report">
-                                    <Button component={Link} to="/report">
+                                    <Button component={Link} to="/overview">
                                         <img
                                             className={classes.smallIcons}
                                             alt="Report"
@@ -104,14 +104,15 @@ export default function Home() {
                     </Grid>
 
 
-
                 </Grid>
             </Grid>
             <Grid container className={classes.pageContent} justify={"center"}>
                 <Grid item className={classes.pageContentLeft}>
-                    <Typography variant={"h4"}>
-                        1. Dashboard
-                    </Typography>
+                    <Button component={Link} to="/dashboard">
+                        <Typography variant={"h4"}>
+                            1. Dashboard
+                        </Typography>
+                    </Button>
                     <Typography variant={"subtitle1"}>
                         Check for Summarised and concise information
                     </Typography>
@@ -132,9 +133,13 @@ export default function Home() {
                 </Grid>
 
                 <Grid item className={classes.pageContentLeft}>
-                    <Typography variant={"h4"}>
-                        2. Report
-                    </Typography>
+
+                    <Button component={Link} to="/overview">
+                        <Typography variant={"h4"}>
+                            2. Report
+                        </Typography>
+                    </Button>
+
                     <Typography variant={"subtitle1"}>
                         Check for Detailed information
                     </Typography>
@@ -144,7 +149,7 @@ export default function Home() {
                 </Grid>
                 <Grid item>
                     <Tooltip placement="right" title="Report">
-                        <Button component={Link} to="/report">
+                        <Button component={Link} to="/overview">
                             <img
                                 className={classes.icons}
                                 alt="Report"
@@ -155,9 +160,13 @@ export default function Home() {
 
 
                 <Grid item className={classes.pageContentLeft}>
-                    <Typography variant={"h4"}>
-                        3. Statistical Model
-                    </Typography>
+
+                    <Button component={Link} to="/model">
+                        <Typography variant={"h4"}>
+                            3. Statistical Model
+                        </Typography>
+                    </Button>
+
                     <Typography variant={"subtitle1"}>
                         To infer about the population
                     </Typography>

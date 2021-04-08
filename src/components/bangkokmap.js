@@ -1,8 +1,14 @@
 //http://www.bangkokgis.com/modules.php?m=download_shapefile
+//Map start
+import React, {useState} from "react";
+import {SVGMap} from "react-svg-map";
+import "../css/map.css";
+import Grid from "@material-ui/core/Grid";
+import Avatar from "@material-ui/core/Avatar";
 
-const BangkokMap = {
+export const MapSVG = {
     "label": "Map of Bangkok",
-    "viewBox":"0 0 800 700",
+    "viewBox":"-5 -5 850 700",
     "locations": [
         {
             "name": "เขตบางพลัด",
@@ -257,4 +263,181 @@ const BangkokMap = {
     ]
 }
 
-export default BangkokMap
+export default function BangkokMap(props) {
+
+    const [data, setData] = useState({
+        pointedLocation: null,
+        count: 0,
+        focusedLocation: null,
+        selectedLocations: [],
+        tooltipStyle: {
+            display: 'none'
+        }
+    });
+
+    const [locationCount, setLocationCount] = useState([
+        {location: "Bang Phlat", count: 10},
+        {location: "Huai Khwang", count: 20},
+        {location: "Wang Thong Lang", count: 30},
+        {location: "Thawi Watthana", count: 40},
+        {location: "Din Daeng", count: 50},
+        {location: "Dusit", count: 60},
+        {location: "Ratchathewi", count: 70},
+        {location: "Vadhana", count: 80},
+        {location: "Thon buri", count: 90},
+        {location: "Sathon", count: 20},
+        {location: "Bang Na", count: 30},
+        {location: "Don Mueang", count: 200},
+        {location: "Bang Kapi", count: 20},
+        {location: "Lat Phrao", count: 20},
+
+    ]);
+
+    const countArray = locationCount.flatMap(x => [x.count])
+    const median = calculateMedian(countArray)
+
+
+    const handleLocationMouseOver = (e) => {
+        const englishLocation = getLocationName(e);
+        setData(prevState => ({
+            ...prevState,
+            pointedLocation: englishLocation,
+        }));
+    };
+
+
+    const handleLocationMouseOut = () => {
+        setData(prevState => ({
+            ...prevState,
+            pointedLocation: null,
+            tooltipStyle: {display: 'none'},
+        }));
+
+    }
+
+    const handleLocationMouseMove = (event) => {
+        const tooltipStyle = {
+            display: 'block',
+            top: event.clientY + 10,
+            left: event.clientX - 100
+        };
+
+        setData(prevState => ({
+            ...prevState,
+            tooltipStyle: tooltipStyle,
+        }));
+    }
+
+
+    const getLocationClassName = (mapLocation, _) => {
+
+        const locationRow = locationCount.find(element => element.location === mapLocation.id);
+        let strengthClass = "color-strength1"
+
+        if (locationRow !== undefined && locationRow.count > 0) {
+            if (locationRow.count < median) {
+                strengthClass = "color-strength2"
+            } else {
+                strengthClass = "color-strength3"
+            }
+
+        }
+        return `svg-map-location ${strengthClass}`
+
+    }
+//Map end
+
+
+// Map function for median
+    function getLocationName(event) {
+        return event.target.attributes.name.value + "/" + event.target.id;
+    }
+
+    function calculateMedian(values) {
+        if (values.length === 0) return 0;
+
+        values.sort(function (a, b) {
+            return a - b;
+        });
+
+        const half = Math.floor(values.length / 2);
+
+        if (values.length % 2)
+            return values[half];
+
+        return (values[half - 1] + values[half]) / 2.0;
+    }
+
+    const legendDimension = "1em"
+
+// Map function
+
+    return (
+
+        <div className="container">
+            <div className="map">
+                <div style={{width: props.mapWidth}}>
+                    <SVGMap
+                        map={MapSVG}
+                        locationClassName={getLocationClassName}
+                        onLocationMouseOver={handleLocationMouseOver}
+                        onLocationMouseOut={handleLocationMouseOut}
+                        onLocationMouseMove={handleLocationMouseMove}
+                    />
+
+                    <div className="svg-map-tooltip" style={data.tooltipStyle}>
+                        {data.pointedLocation}
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <Grid className="legend" style={{marginTop:"3em"}} container alignItems={"center"}>
+                    <Grid item>
+                        <Avatar variant="square" style={{
+                            backgroundColor: "#B30000",
+                            width: legendDimension,
+                            height: legendDimension,
+                        }}>
+                            {``}
+                        </Avatar>
+                    </Grid>
+                    <Grid item>
+                        <p style={{marginLeft: "1em"}}>High</p>
+                    </Grid>
+                </Grid>
+                <Grid className="legend" container alignItems={"center"}>
+                    <Grid item>
+
+                        <Avatar variant="square" style={{
+                            backgroundColor: "#E34A33",
+                            width: legendDimension,
+                            height: legendDimension,
+                        }}>
+                            {``}
+                        </Avatar>
+                    </Grid>
+                    <Grid item>
+                        <p style={{marginLeft: "1em"}}>Medium</p>
+                    </Grid>
+                </Grid>
+                <Grid className="legend" container alignItems={"center"}>
+                    <Grid item>
+                        <Avatar variant="square" style={{
+                            backgroundColor: "#fdcc8a",
+                            width: legendDimension,
+                            height: legendDimension,
+                        }}>
+                            {``}
+                        </Avatar>
+                    </Grid>
+                    <Grid item>
+                        <p style={{marginLeft: "1em"}}>Low</p>
+                    </Grid>
+                </Grid>
+
+            </div>
+        </div>
+    )
+
+}

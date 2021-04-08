@@ -12,6 +12,7 @@ import "../css/map.css";
 import "react-svg-map/lib/index.css";
 import Toolbar from "../components/toolbar";
 import Avatar from '@material-ui/core/Avatar';
+import BangkokMap from "../components/bangkokmap";
 
 
 const useStyles = makeStyles(theme => ({
@@ -569,7 +570,7 @@ export default function Dashboard() {
 
 
     const handleLocationMouseOver = (e) => {
-        const thaiLocation = getLocationName(e);
+        // const thaiLocation = getLocationName(e);
         const englishLocation = getLocationId(e);
 
         const locationRow = locationCount.find(element => element.location === englishLocation);
@@ -586,7 +587,7 @@ export default function Dashboard() {
         }
         setData(prevState => ({
             ...prevState,
-            pointedLocation: thaiLocation + "  -  " + englishLocation
+            pointedLocation: englishLocation
         }));
     };
 
@@ -887,58 +888,8 @@ export default function Dashboard() {
                                 </Grid>
                             </Grid>
                             <Grid item>
-                                <Grid container direction={"row"} style={{margin:"0 2em"}}>
-                                    <Grid item style={{width:"67%"}}>
-                                        <p className={classes.title}>Hotspot Locations</p>
-                                        <SVGMap
-                                            map={BangkokSVG}
-                                            locationClassName={getLocationClassName}
-                                            onLocationMouseOver={handleLocationMouseOver}
-                                            onLocationMouseOut={handleLocationMouseOut}
-                                            onLocationMouseMove={handleLocationMouseMove}
+<BangkokMap mapWidth="40em"/>
 
-                                        />
-                                        <div className="svg-map-tooltip" style={data.tooltipStyle}>
-                                            <div>Location:{data.pointedLocation}</div>
-                                            <div>Count:{data.count}</div>
-                                        </div>
-                                    </Grid>
-                                    <Grid item style={{margin:"0 4em 0 5em", height: '10em'}}>
-                                        <Grid container style={{margin:"20em 0 0 0"}} alignItems={"center"}>
-                                            <Grid item>
-                                                <Avatar variant="square" style={{backgroundColor:"#fdcc8a",width:"30px", height:"30px"}}>
-                                                    {``}
-                                                </Avatar>
-                                            </Grid>
-                                            <Grid item>
-                                                <p style={{marginLeft:"1em"}}>Low</p>
-                                            </Grid>
-                                        </Grid>
-
-                                        <Grid container alignItems={"center"}>
-                                            <Grid item>
-                                                <Avatar variant="square" style={{backgroundColor:"#e34a33",width:"30px", height:"30px"}}>
-                                                    {``}
-                                                </Avatar>
-                                            </Grid>
-                                            <Grid item>
-                                                <p style={{marginLeft:"1em"}}>Medium</p>
-                                            </Grid>
-                                        </Grid>
-
-                                        <Grid container alignItems={"center"}>
-                                            <Grid item>
-                                                <Avatar variant="square" style={{backgroundColor:"#b30000", width:"30px", height:"30px"}}>
-                                                    {``}
-                                                </Avatar>
-                                            </Grid>
-                                            <Grid item>
-                                                <p style={{marginLeft:"1em"}}>High</p>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-
-                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -946,7 +897,7 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item style={{marginTop: "2em"}}>
-                <Grid container >
+                <Grid container>
                     <Grid item>
                         <Card className={classes.root} variant="outlined">
                             <CardContent>
@@ -992,7 +943,7 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item style={{marginTop: "2em"}}>
-                <Grid container >
+                <Grid container>
                     <Grid item>
                         <Card className={classes.root} variant="outlined">
                             <CardContent>

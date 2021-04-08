@@ -2,35 +2,30 @@ import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import VerticalMenu from "../components/sidemenu";
-import DateSelection from "../components/dateselection";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import AppBar from "@material-ui/core/AppBar";
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Plot from "react-plotly.js";
 
 const useStyles = makeStyles(theme => ({
     mainContainer: {
-        padding: 0,
-        margin: 0
+        height: "100%",
+        display: "flex",
+        flexDirection: "row"
     },
     sideMenu: {
-        display: "inline-block",
-        position: "absolute",
-        height: "100%",
-        width: "300px",
-        backgroundColor: '#1f5f8b'
+        minWidth: "20%",
+        maxWidth: "20%",
+        backgroundColor: '#1f5f8b',
     },
-    sideMenu2: {
+    content: {
+        marginLeft :"1em",
+
     },
+
     item: {
-        marginLeft: 350
     },
     itemHeading: {
-        marginLeft: 350,
         marginTop: 20,
         borderBottom: "3px solid #cdd0cb",
         width: "80%"
@@ -98,9 +93,9 @@ export default function Report() {
 
         <Grid container className={classes.mainContainer}>
             <Grid item className={classes.sideMenu}>
-                <VerticalMenu></VerticalMenu>
+                <VerticalMenu/>
             </Grid>
-            <Grid item>
+            <Grid item className={classes.content}>
                 <Grid container className={classes.sideMenu2} direction={"column"}>
                     <Grid item className={classes.itemHeading}>
                         <Typography variant={'h6'}>
@@ -108,7 +103,7 @@ export default function Report() {
                         </Typography>
                     </Grid>
                     <Grid item className={classes.item}>
-                        <Grid container className={classes.text} >
+                        <Grid container className={classes.text}>
                             <Grid item>
                                 <Card className={classes.root} variant="outlined">
                                     <CardContent>
@@ -150,11 +145,15 @@ export default function Report() {
 
                                         <Plot
                                             data={Gauge1data}
-                                            layout={{width: 320, height: 220, margin: { t: 0, b: 0 },  paper_bgcolor: "lavender",
+                                            layout={{
+                                                width: 320,
+                                                height: 220,
+                                                margin: {t: 0, b: 0},
+                                                paper_bgcolor: "lavender",
                                             }}
 
                                             // To disable trace
-                                            config={{displayModeBar:false,staticPlot:false}}
+                                            config={{displayModeBar: false, staticPlot: false}}
                                         />
                                     </CardContent>
                                 </Card>
@@ -209,11 +208,15 @@ export default function Report() {
 
                                         <Plot
                                             data={Gauge2data}
-                                            layout={{width: 320, height: 220, margin: { t: 0, b: 0 },  paper_bgcolor: "lavender",
+                                            layout={{
+                                                width: 320,
+                                                height: 220,
+                                                margin: {t: 0, b: 0},
+                                                paper_bgcolor: "lavender",
                                             }}
 
                                             // To disable trace
-                                            config={{displayModeBar:false,staticPlot:false}}
+                                            config={{displayModeBar: false, staticPlot: false}}
                                         />
                                     </CardContent>
                                 </Card>
@@ -268,11 +271,15 @@ export default function Report() {
 
                                         <Plot
                                             data={Gauge3data}
-                                            layout={{width: 320, height: 220, margin: { t: 0, b: 0 },  paper_bgcolor: "lavender",
+                                            layout={{
+                                                width: 320,
+                                                height: 220,
+                                                margin: {t: 0, b: 0},
+                                                paper_bgcolor: "lavender",
                                             }}
 
                                             // To disable trace
-                                            config={{displayModeBar:false,staticPlot:false}}
+                                            config={{displayModeBar: false, staticPlot: false}}
                                         />
                                     </CardContent>
                                 </Card>
@@ -280,9 +287,9 @@ export default function Report() {
                         </Grid>
                     </Grid>
                     <Grid item className={classes.itemHeading}>
-                    <Typography variant={'h6'}>
-                        Recent Infection Testing Algorithm [RITA] Result
-                    </Typography>
+                        <Typography variant={'h6'}>
+                            Recent Infection Testing Algorithm [RITA] Result
+                        </Typography>
 
                     </Grid>
                     <Grid item className={classes.item}>
@@ -328,11 +335,15 @@ export default function Report() {
 
                                         <Plot
                                             data={Gauge3data}
-                                            layout={{width: 320, height: 220, margin: { t: 0, b: 0 },  paper_bgcolor: "lavender",
+                                            layout={{
+                                                width: 320,
+                                                height: 220,
+                                                margin: {t: 0, b: 0},
+                                                paper_bgcolor: "lavender",
                                             }}
 
                                             // To disable trace
-                                            config={{displayModeBar:false,staticPlot:false}}
+                                            config={{displayModeBar: false, staticPlot: false}}
                                         />
                                     </CardContent>
                                 </Card>

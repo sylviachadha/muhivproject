@@ -1,6 +1,5 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -9,22 +8,20 @@ import Collapse from '@material-ui/core/Collapse';
 
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
+import {Link} from "react-router-dom";
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
-        height: '100%',
         // backgroundColor: '#364f6b','#5588a3'
+        height: "100%",
         backgroundColor: '#1f5f8b',
         color: 'white',
-        display: 'inline-block',
-        fontSize:20,
-        listItemText:{
-            fontSize:'5em',//Insert your required size
+        fontSize: 20,
+        listItemText: {
+            fontSize: '5em',//Insert your required size
         }
     },
     nested: {
@@ -34,15 +31,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function VerticalMenu() {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
 
 
     const [openRecency, setOpenRecency] = React.useState(true);
+    const handleRecencyClick = () => setOpenRecency(!openRecency);
+
+    const [openDemographic, setOpenDemographic] = React.useState(true);
+    const handleDemographicClick = () => setOpenDemographic(!openDemographic);
+
+    const [openBehaviour, setOpenBehaviour] = React.useState(true);
+    const handleBehaviourClick = () => setOpenBehaviour(!openBehaviour);
 
 
-    const handleRecencyClick = () => {
-        setOpenRecency(!openRecency);
-    };
+    const [openGeographic, setOpenGeographic] = React.useState(true);
+    const handleGeographicClick = () => setOpenGeographic(!openGeographic);
+
+
+    const [openPartnerTest, setOpenPartnerTest] = React.useState(true);
+    const handlePartnerTest = () => setOpenPartnerTest(!openPartnerTest);
+
 
     return (
         <List component="nav" className={classes.root}>
@@ -57,7 +64,7 @@ export default function VerticalMenu() {
 
             <Collapse in={openRecency} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItem button component="a" href="/overview" className={classes.nested}>
+                    <ListItem button component={Link} to="/overview" className={classes.nested}>
                         <ListItemIcon>
                             <PlayArrowIcon style={{color: '#fff'}}/>
                         </ListItemIcon>
@@ -67,30 +74,29 @@ export default function VerticalMenu() {
                 </List>
             </Collapse>
 
-
-            <ListItem button onClick={{}}>
+            <ListItem button onClick={handleDemographicClick}>
                 <ListItemIcon>
                     <AssessmentIcon style={{color: '#fff'}}/>
                 </ListItemIcon>
                 <ListItemText primary="Demographic"/>
-                {open ? <ExpandLess/> : <ExpandMore/>}
+                {openDemographic ? <ExpandLess/> : <ExpandMore/>}
             </ListItem>
 
-            <Collapse in={open} timeout="auto" unmountOnExit>
+            <Collapse in={openDemographic} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItem button component="a" href="/by-gender" className={classes.nested}>
+                    <ListItem button component={Link} to="/by-gender" className={classes.nested}>
                         <ListItemIcon>
                             <PlayArrowIcon style={{color: '#fff'}}/>
                         </ListItemIcon>
                         <ListItemText primary="By Gender"/>
                     </ListItem>
-                    <ListItem button component="a" href="/by-status" className={classes.nested}>
+                    <ListItem button component={Link} to="/by-status" className={classes.nested}>
                         <ListItemIcon>
                             <PlayArrowIcon style={{color: '#fff'}}/>
                         </ListItemIcon>
                         <ListItemText primary="By Marital status"/>
                     </ListItem>
-                    <ListItem button component="a" href="/by-age" className={classes.nested}>
+                    <ListItem button component={Link} to="/by-age" className={classes.nested}>
                         <ListItemIcon>
                             <PlayArrowIcon style={{color: '#fff'}}/>
                         </ListItemIcon>
@@ -100,17 +106,17 @@ export default function VerticalMenu() {
             </Collapse>
 
 
-            <ListItem button onClick={{}}>
+            <ListItem button onClick={handleBehaviourClick}>
                 <ListItemIcon>
                     <AssessmentIcon style={{color: '#fff'}}/>
                 </ListItemIcon>
                 <ListItemText primary="Behaviour"/>
-                {open ? <ExpandLess/> : <ExpandMore/>}
+                {openBehaviour ? <ExpandLess/> : <ExpandMore/>}
             </ListItem>
 
-            <Collapse in={open} timeout="auto" unmountOnExit>
+            <Collapse in={openBehaviour} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItem button component="a" href="/by-risk" className={classes.nested}>
+                    <ListItem button component={Link} to="/by-risk" className={classes.nested}>
                         <ListItemIcon>
                             <PlayArrowIcon style={{color: '#fff'}}/>
                         </ListItemIcon>
@@ -120,23 +126,23 @@ export default function VerticalMenu() {
                 </List>
             </Collapse>
 
-            <ListItem button onClick={{}}>
+            <ListItem button onClick={handleGeographicClick}>
                 <ListItemIcon>
                     <AssessmentIcon style={{color: '#fff'}}/>
                 </ListItemIcon>
                 <ListItemText primary="Geographic"/>
-                {open ? <ExpandLess/> : <ExpandMore/>}
+                {openGeographic ? <ExpandLess/> : <ExpandMore/>}
             </ListItem>
 
-            <Collapse in={open} timeout="auto" unmountOnExit>
+            <Collapse in={openGeographic} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}>
+                    <ListItem button component={Link} to="/by-area" className={classes.nested}>
                         <ListItemIcon>
                             <PlayArrowIcon style={{color: '#fff'}}/>
                         </ListItemIcon>
                         <ListItemText primary="By Area"/>
                     </ListItem>
-                    <ListItem button component="a" href="/by-site" className={classes.nested}>
+                    <ListItem button component={Link} to="/by-site" className={classes.nested}>
                         <ListItemIcon>
                             <PlayArrowIcon style={{color: '#fff'}}/>
                         </ListItemIcon>
@@ -145,17 +151,17 @@ export default function VerticalMenu() {
                 </List>
             </Collapse>
 
-            <ListItem button onClick={{}}>
+            <ListItem button onClick={handlePartnerTest}>
                 <ListItemIcon>
                     <AssessmentIcon style={{color: '#fff'}}/>
                 </ListItemIcon>
                 <ListItemText primary="Partner Test"/>
-                {open ? <ExpandLess/> : <ExpandMore/>}
+                {openPartnerTest ? <ExpandLess/> : <ExpandMore/>}
             </ListItem>
 
-            <Collapse in={open} timeout="auto" unmountOnExit>
+            <Collapse in={openPartnerTest} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItem button component="a" href="/by-outcome" className={classes.nested}>
+                    <ListItem button component={Link} to="/by-outcome" className={classes.nested}>
                         <ListItemIcon>
                             <PlayArrowIcon style={{color: '#fff'}}/>
                         </ListItemIcon>

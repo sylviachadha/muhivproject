@@ -8,10 +8,11 @@
     cursor: pointer;
 
 }
-.svg-map:hover {
-    fill: #9ed9ff;
-    outline: 0;
+
+.svg-map-location:hover {
+    opacity: 0.7;
 }
+
 
 .svg-map-tooltip {
     position: fixed;
@@ -41,3 +42,16 @@
     fill: #b30000 !important;
 }
 
+
+.container {
+    display: flex;
+    align-content: flex-start;
+}
+
+.map {
+    padding: 40px;
+}
+
+.legend {
+    margin-top: 1em;
+}

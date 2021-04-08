@@ -85,27 +85,27 @@ export default function Gender() {
 
     // Line chart / trend chart
     const line1Data = {
-        x: ["Jan", "Feb", "Mar", "Apr","May"],
-        y: [10, 15, 13, 17,22],
+        x: ["Jan", "Feb", "Mar", "Apr", "May"],
+        y: [10, 15, 13, 17, 22],
         type: 'scatter',
         name: 'Transgender'
     };
 
     const line2Data = {
-        x: ["Jan", "Feb", "Mar", "Apr","May"],
+        x: ["Jan", "Feb", "Mar", "Apr", "May"],
         y: [16, 6, 11, 10],
         type: 'scatter',
         name: 'Male'
     };
 
     const line3Data = {
-        x: ["Jan", "Feb", "Mar", "Apr","May"],
-        y: [20, 12, 15, 12,13],
+        x: ["Jan", "Feb", "Mar", "Apr", "May"],
+        y: [20, 12, 15, 12, 13],
         type: 'scatter',
         name: 'Female'
     };
 
-    const lineData1 = [line1Data, line2Data,line3Data];
+    const lineData1 = [line1Data, line2Data, line3Data];
 
     const lineLayout1 = {
         width: 500,
@@ -118,44 +118,45 @@ export default function Gender() {
     return (
         <Grid container className={classes.mainContainer} direction={"row"}>
             <Grid item className={classes.sideMenu}>
-                <VerticalMenu></VerticalMenu>
+                <VerticalMenu/>
             </Grid>
-            <Grid item className={classes.itemHeading}>
-                <Grid container direction={"column"}>
-                    <Grid item>
-                        <Grid container direction={"row"}>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                <Grid item className={classes.itemHeading}>
+                    <Grid container direction={"column"}>
+                        <Grid item>
+                            <Grid container direction={"row"}>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Plot
-                                            data={Bar3Data}
-                                            layout={Bar3Layout}
+                                            <Plot
+                                                data={Bar3Data}
+                                                layout={Bar3Layout}
 
-                                            // To disable trace
-                                            config={{displayModeBar: false, staticPlot: false}}
-                                        />
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item>
-                                <Card className={classes.root} variant="outlined">
-                                    <CardContent>
+                                                // To disable trace
+                                                config={{displayModeBar: false, staticPlot: false}}
+                                            />
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card className={classes.root} variant="outlined">
+                                        <CardContent>
 
-                                        <Plot
-                                            data={lineData1}
-                                            layout={lineLayout1}
+                                            <Plot
+                                                data={lineData1}
+                                                layout={lineLayout1}
 
-                                            // To disable trace
-                                            config={{displayModeBar: false, staticPlot: false}}
-                                        />
-                                    </CardContent>
-                                </Card>
+                                                // To disable trace
+                                                config={{displayModeBar: false, staticPlot: false}}
+                                            />
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
+
         </Grid>
     );
 }
